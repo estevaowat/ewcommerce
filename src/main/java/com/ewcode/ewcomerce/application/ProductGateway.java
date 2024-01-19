@@ -4,6 +4,7 @@ import com.ewcode.ewcomerce.domain.Product;
 
 import java.util.Optional;
 
+
 public interface ProductGateway {
 
     void insertOrUpdate(Product product);
