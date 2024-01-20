@@ -6,6 +6,7 @@ plugins {
 
 group = "com.ewcode"
 version = "0.0.1-SNAPSHOT"
+var springCloudAwsVersion = "3.1.0"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_21
@@ -15,15 +16,23 @@ repositories {
     mavenCentral()
 }
 
+dependencyManagement {
+    imports {
+        mavenBom("io.awspring.cloud:spring-cloud-aws-dependencies:${springCloudAwsVersion}")
+        mavenBom("software.amazon.awssdk:bom:2.18.28")
+    }
+
+}
+
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-data-mongodb:3.0.7")
-    implementation("org.springframework.boot:spring-boot-starter-web:3.1.0")
-    implementation("org.springframework.boot:spring-boot-starter-log4j2:3.0.4")
-    implementation("org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE")
-    implementation("org.springframework.cloud:spring-cloud-starter-aws-messaging:2.2.6.RELEASE")
+    implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-log4j2")
+    implementation("io.awspring.cloud:spring-cloud-aws-starter-s3")
+    implementation("io.awspring.cloud:spring-cloud-aws-starter-sqs")
     testImplementation("org.instancio:instancio-junit:4.0.0")
-    developmentOnly("org.springframework.boot:spring-boot-devtools:3.1.0")
-    testImplementation("org.springframework.boot:spring-boot-starter-test:3.1.0")
+    developmentOnly("org.springframework.boot:spring-boot-devtools")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
 configurations.all {

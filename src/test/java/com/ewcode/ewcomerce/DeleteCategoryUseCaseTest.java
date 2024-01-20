@@ -12,6 +12,7 @@ public class DeleteCategoryUseCaseTest {
     // As a user, I want to delete a product or category from my catalog.
     DeleteCategoryUseCase deleteCategoryUseCase;
     CategoryGateway categoryGateway;
+    
 
     @BeforeEach
     void setup() {

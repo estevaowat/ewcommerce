@@ -12,7 +12,7 @@ public class RegisterProductUseCase {
     }
 
     public void execute(Product product) {
-        if(product.getCategory() == null) {
+        if(product.category() == null) {
             System.out.println("Saving product without category");
         }
 

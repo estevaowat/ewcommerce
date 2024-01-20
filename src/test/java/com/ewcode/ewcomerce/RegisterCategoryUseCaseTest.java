@@ -1,8 +1,10 @@
 package com.ewcode.ewcomerce;
 
 import com.ewcode.ewcomerce.application.CategoryGateway;
+import com.ewcode.ewcomerce.application.message.MessageSender;
 import com.ewcode.ewcomerce.application.usecase.RegisterCategoryUseCase;
 import com.ewcode.ewcomerce.domain.Category;
+import com.ewcode.ewcomerce.infra.config.Events;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -11,15 +13,15 @@ import org.mockito.Mockito;
 
 public class RegisterCategoryUseCaseTest {
 
-    RegisterCategoryUseCase registerCategoryUseCase;
-    CategoryGateway categoryGateway;
-    // As a user, I want to register a category with its owner, so that I can access its data in the future (title, description, owner ID).
-
+    private RegisterCategoryUseCase registerCategoryUseCase;
+    private CategoryGateway categoryGateway;
+    private MessageSender messageSender;
 
     @BeforeEach
     void setup() {
         categoryGateway = Mockito.spy(CategoryGateway.class);
-        registerCategoryUseCase = new RegisterCategoryUseCase(categoryGateway);
+        messageSender = Mockito.spy(MessageSender.class);
+        registerCategoryUseCase = new RegisterCategoryUseCase(categoryGateway, messageSender);
     }
 
     @Test
@@ -27,7 +29,8 @@ public class RegisterCategoryUseCaseTest {
     void createCategory() {
         Category category = Instancio.create(Category.class);
         registerCategoryUseCase.execute(category);
-        Mockito.verify(categoryGateway, Mockito.times(1)).insertOrUpdate(category);
+        Mockito.verify(categoryGateway, Mockito.times(1)).insertOrUpdate(Mockito.eq(category));
+        Mockito.verify(messageSender, Mockito.times(1)).sendMessage(Mockito.eq(Events.CATALOG_EMIT.name()), Mockito.eq(category.owner()));
     }
 
     @Test

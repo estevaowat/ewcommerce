@@ -2,11 +2,12 @@ package com.ewcode.ewcomerce.domain;
 
 public class Product {
 
-    private String title;
-    private String description;
+    private final String title;
+    private final String description;
+    private final String owner;
     private Double price;
     private Category category;
-    private String owner;
+
     public Product(String title, String description, Double price, Category category, String owner) {
         this.title = title;
         this.description = description;
@@ -15,31 +16,33 @@ public class Product {
         this.owner = owner;
     }
 
-    public String getTitle() {
+    public String title() {
         return title;
     }
 
-    public String getDescription() {
+    public String description() {
         return description;
     }
 
-    public Double getPrice() {
+    public Double price() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public Product setPrice(Double price) {
         this.price = price;
+        return this;
     }
 
-    public Category getCategory() {
+    public Category category() {
         return category;
     }
 
-    public void category(Category category) {
+    public Product setCategory(Category category) {
         this.category = category;
+        return this;
     }
 
-    public String getOwner() {
+    public String owner() {
         return owner;
     }
 }
