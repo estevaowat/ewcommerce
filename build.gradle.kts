@@ -28,7 +28,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-log4j2")
-    implementation("io.awspring.cloud:spring-cloud-aws-starter-s3")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
+//    implementation("io.awspring.cloud:spring-cloud-aws-starter-s3") not using for now
     implementation("io.awspring.cloud:spring-cloud-aws-starter-sqs")
     testImplementation("org.instancio:instancio-junit:4.0.0")
     developmentOnly("org.springframework.boot:spring-boot-devtools")

@@ -13,5 +13,4 @@ public interface ProductGateway {
 
     void delete(String productId);
 
-    void update(String productId, Product newProduct);
 }

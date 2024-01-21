@@ -24,8 +24,4 @@ public class MongoProductGatewayImpl implements ProductGateway {
 
     }
 
-    @Override
-    public void update(String productId, Product newProduct) {
-
-    }
 }

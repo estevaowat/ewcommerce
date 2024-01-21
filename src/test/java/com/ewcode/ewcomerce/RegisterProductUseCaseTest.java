@@ -3,6 +3,7 @@ package com.ewcode.ewcomerce;
 import com.ewcode.ewcomerce.application.ProductGateway;
 import com.ewcode.ewcomerce.application.usecase.RegisterProductUseCase;
 import com.ewcode.ewcomerce.domain.Product;
+import com.ewcode.ewcomerce.infra.controller.RegisterProductDTO;
 import org.instancio.Instancio;
 import org.instancio.junit.InstancioExtension;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,10 +28,8 @@ public class RegisterProductUseCaseTest {
     @Test
     @DisplayName("Should register a product with its owner")
     void registerProduct() {
-        Product product = Instancio.create(Product.class);
+        RegisterProductDTO product = Instancio.create(RegisterProductDTO.class);
         registerProductUseCase.execute(product);
-        Mockito.verify(productGateway, Mockito.times(1)).insertOrUpdate(product);
+        Mockito.verify(productGateway, Mockito.times(1)).insertOrUpdate(Mockito.any(Product.class));
     }
-
-
 }
